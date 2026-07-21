@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Rewards - SUICINO{% endblock %}
+
+{% block content %}
+<div class="app-container">
+    <div class="rewards-page">
+        <div class="page-header">
+            <a href="{{ url_for('home') }}" class="back-btn">←</a>
+            <h2>Daily Tasks</h2>
+            <span class="task-counter">{{ completed_count }}/{{ total_tasks }}</span>
+        </div>
+        
+        <div class="daily-tasks">
+            {% for task in tasks %}
+            <div class="task-item {{ 'completed' if task.completed else 'available' if task.available else 'unavailable' }}">
+                <div class="task-content">
+                    <div class="task-checkbox">
+                        {% if task.completed %}
+                            ✅
+                        {% elif task.available %}
+                            <button onclick="completeTask('{{ task.id }}')" class="complete-btn">○</button>
+                        {% else %}
+                            <span class="unavailable-icon">○</span>
+                        {% endif %}
+                    </div>
+                    <div class="task-details">
+                        <p class="task-name">{{ task.name }}</p>
+                        <small class="task-description">{{ task.description }}</small>
+                    </div>
+                </div>
+                <div class="task-points {{ 'earned' if task.completed else '' }}">
+                    +{{ task.points }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="progress-section">
+            <h3>Today's Progress</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: '{{ (completed_count / total_tasks * 100) }}%'"></div>
+            </div>
+            <p>{{ completed_count }} of {{ total_tasks }} tasks completed</p>
+        </div>
+        
+        <div class="rewards-section">
+            <h3>Rewards</h3>
+            
+            <div class="reward-card {{ 'achievable' if user.total_points >= 100000000 else 'locked' }}">
+                <div class="reward-info">
+                    <h4>Apple iPhone 14 Pro</h4>
+                    <p>Points needed: 100,000,000</p>
+                    <div class="points-progress">
+                        <div class="progress-bar small">
+                            <div class="progress-fill" style="width: '{{ (user.total_points / 100000000 * 100) }}%'"></div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-reward {{ 'enabled' if user.total_points >= 100000000 else 'disabled' }} 
+                        {{ 'disabled' if user.total_points < 100000000 else '' }}">
+                    {{ 'Redeem' if user.total_points >= 100000000 else 'Locked' }}
+                </button>
+            </div>
+            
+            <div class="reward-card {{ 'achievable' if user.total_points >= 20000 else 'locked' }}">
+                <div class="reward-info">
+                    <h4>$10 Paypal</h4>
+                    <p>Points needed: 20,000</p>
+                    <div class="points-progress">
+                        <div class="progress-bar small">
+                            <div class="progress-fill" style="width: '{{ (user.total_points / 20000 * 100) if user.total_points < 20000 else 100 }}%'"></div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-reward {{ 'enabled' if user.total_points >= 20000 else 'disabled' }} 
+                        {{ 'disabled' if user.total_points < 20000 else '' }}">
+                    {{ 'Redeem' if user.total_points >= 20000 else 'Locked' }}
+                </button>
+            </div>
+        </div>
+        
+        <div class="points-display">
+            <strong>Your Points: <span id="user-points">{{ user.total_points }}</span></strong>
+        </div>
+    </div>
+    
+    {% include 'bottom_nav.html' %}
+</div>
+
+<!-- Success Modal -->
+<div id="successModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <div class="success-icon">🎉</div>
+        <h3>Task Completed!</h3>
+        <p>You earned <span id="points-earned">0</span> points!</p>
+        <p>Total points: <span id="modal-total-points">0</span></p>
+        <button onclick="closeModal()" class="btn btn-primary">Awesome!</button>
+    </div>
+</div>
+{% endblock %}

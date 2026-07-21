@@ -1,0 +1,18 @@
+<div class="bottom-nav">
+    <a href="{{ url_for('home') }}" class="nav-item {{ 'active' if request.endpoint == 'home' }}">
+        <i class="nav-icon">🏠</i>
+        <span>Home</span>
+    </a>
+    <a href="{{ url_for('forum') }}" class="nav-item {{ 'active' if request.endpoint == 'forum' }}">
+        <i class="nav-icon">💬</i>
+        <span>Forum</span>
+    </a>
+    <a href="{{ url_for('rewards') }}" class="nav-item {{ 'active' if request.endpoint == 'rewards' }}">
+        <i class="nav-icon">🎁</i>
+        <span>Rewards</span>
+    </a>
+    <a href="{{ url_for('profile') }}" class="nav-item {{ 'active' if request.endpoint == 'profile' }}">
+        <i class="nav-icon">👤</i>
+        <span>Profile</span>
+    </a>
+</div>

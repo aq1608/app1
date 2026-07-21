@@ -1,0 +1,53 @@
+<!-- {% extends "base.html" %}
+
+{% block title %}Questionnaire - SUICINO{% endblock %}
+
+{% block content %}
+<div class="questionnaire-page">
+    <div class="questionnaire-container">
+        <h2 class="questionnaire-title">Questionnaire</h2>
+        
+        <form method="POST" class="questionnaire-form">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-group">
+                <label class="form-label">{{ form.mental_illness.label.text }}</label>
+                {{ form.mental_illness(class="form-control", rows="3") }}
+                {% if form.mental_illness.errors %}
+                    <div class="text-danger">
+                        {% for error in form.mental_illness.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">{{ form.preferred_therapist_gender.label.text }}</label>
+                {{ form.preferred_therapist_gender(class="form-select") }}
+                {% if form.preferred_therapist_gender.errors %}
+                    <div class="text-danger">
+                        {% for error in form.preferred_therapist_gender.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">{{ form.preferred_language.label.text }}</label>
+                {{ form.preferred_language(class="form-select") }}
+                {% if form.preferred_language.errors %}
+                    <div class="text-danger">
+                        {% for error in form.preferred_language.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            {{ form.submit(class="btn btn-auth-primary") }}
+        </form>
+    </div>
+</div>
+{% endblock %} -->

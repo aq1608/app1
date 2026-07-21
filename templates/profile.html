@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - SUICINO{% endblock %}
+
+{% block content %}
+<div class="app-container">
+    <div class="profile-page">
+        <div class="profile-header">
+            <a href="#" class="settings-btn">⚙️</a>
+        </div>
+        
+        <div class="profile-info">
+            <div class="profile-avatar">
+                <div class="avatar-circle">👤</div>
+                <small>Edit Profile picture</small>
+            </div>
+            
+            <h2 class="profile-name">{{ user.username }}</h2>
+            <div class="status-badge">
+                <span class="status-dot online"></span>
+                <span>Online</span>
+            </div>
+            
+            <div class="points-display">
+                <strong>Total Points: {{ user.total_points }}</strong>
+            </div>
+        </div>
+        
+        <div class="profile-details">
+            <h3>Personal Information</h3>
+            
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Email:</strong>
+                    <span>{{ user.email }}</span>
+                </div>
+                
+                <div class="info-item">
+                    <strong>Phone Number:</strong>
+                    <span>{{ user.phone or 'Not provided' }}</span>
+                </div>
+                
+                <div class="info-item">
+                    <strong>Birthday:</strong>
+                    <span>{{ user.birthday or 'Not provided' }}</span>
+                </div>
+                
+                <div class="info-item">
+                    <strong>Forum Posts:</strong>
+                    <span>{{ total_posts }}</span>
+                </div>
+                
+                <div class="info-item">
+                    <strong>Daily Check-ins:</strong>
+                    <span>{{ total_checkins }}</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-actions">
+            <button class="btn btn-outline-danger" onclick="
+                {{ url_for('logout') }}
+                ">Logout</button>
+        </div>
+    </div>
+    
+    {% include 'bottom_nav.html' %}
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "username": "aq1608",
+    "email": "pearlynowyanzhen@gmail.com",
+    "password": "Qiao1608",
+    "phone": "",
+    "birthday": "",
+    "created_at": "2025-08-02T21:51:41.090422",
+    "questionnaire_completed": true,
+    "total_points": 30,
+    "mental_illness": "no",
+    "preferred_gender": "non-binary",
+    "preferred_language": "english"
+  }
+]

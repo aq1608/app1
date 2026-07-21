@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Forum - SUICINO{% endblock %}
+
+{% block content %}
+<div class="app-container">
+    <div class="forum-page">
+        <div class="forum-header">
+            <h1>Forum</h1>
+            <a href="{{ url_for('new_post') }}" class="btn btn-primary">+ New Post</a>
+        </div>
+        
+        <div class="forum-posts">
+            {% for post in posts %}
+            <div class="forum-post-card">
+                <div class="post-header">
+                    <div class="user-info">
+                        <div class="user-avatar">👤</div>
+                        <div class="user-details">
+                            <strong>{{ post.username }}</strong>
+                            <small>{{ post.created_at[:10] }}</small>
+                        </div>
+                    </div>
+                    <div class="post-menu">⋯</div>
+                </div>
+                
+                <div class="post-content">
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.content[:200] }}{% if post.content|length > 200 %}...{% endif %}</p>
+                </div>
+                
+                <div class="post-actions">
+                    <button class="action-btn like-btn">
+                        👍 {{ post.likes }}
+                    </button>
+                    <span class="action-btn">💬 0 replies</span>
+                </div>
+            </div>
+            {% else %}
+            <div class="no-posts">
+                <p>No posts yet. Be the first to share!</p>
+                <a href="{{ url_for('new_post') }}" class="btn btn-primary">Create First Post</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Chatbot Button -->
+    <div class="chatbot-button">
+        <button onclick="alert('Chatbot coming soon!')" class="btn-chatbot">🤖</button>
+    </div>
+    
+    {% include 'bottom_nav.html' %}
+</div>
+{% endblock %}

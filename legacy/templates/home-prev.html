@@ -1,0 +1,45 @@
+<!-- {% extends "base.html" %}
+
+{% block title %}Daily Check-in - SUICINO{% endblock %}
+
+{% block content %}
+<div class="app-container">
+    <div class="check-in-page">
+        <div class="logo-small">
+            <div class="logo-text">SUICINO</div>
+        </div>
+        
+        <div class="greeting">
+            <h2>Hello {{ current_user.username }}!</h2>
+            <h3>How are you feeling Today?</h3>
+        </div>
+        
+        {% if today_checkin %}
+            <div class="alert alert-info">
+                <strong>Today's Check-in:</strong> {{ today_checkin.feelings }}
+                <br><small>Completed at {{ today_checkin.created_at.strftime('%I:%M %p') }}</small>
+            </div>
+        {% endif %}
+        
+        <form method="POST" action="{{ url_for('daily_checkin') }}" class="checkin-form">
+            <div class="form-group">
+                <label>Write down your thoughts and feelings for today</label>
+                <textarea name="feelings" class="form-control" rows="6" placeholder="Share what's on your mind..." required>{{ today_checkin.feelings if today_checkin else '' }}</textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Rate your mood (1-10)</label>
+                <input type="range" name="mood_score" min="1" max="10" value="{{ today_checkin.mood_score if today_checkin else 5 }}" class="form-range" id="moodRange">
+                <div class="range-labels">
+                    <span>😞 Very Low</span>
+                    <span>😊 Great</span>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-submit">Submit</button>
+        </form>
+    </div>
+    
+    {% include 'bottom_nav.html' %}
+</div>
+{% endblock %} -->

@@ -1,45 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Music App</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>🎵 My Music App</h1>
-        
-        <!-- File Upload -->
-        <div class="upload-section">
-            <input type="file" id="fileInput" accept=".mp3,.wav,.ogg,.m4a" multiple>
-            <button onclick="uploadFiles()">Upload Songs</button>
-        </div>
+{% extends "base.html" %}
 
-        <!-- Music Player -->
-        <div class="player">
-            <audio id="audioPlayer" controls>
-                Your browser does not support the audio element.
-            </audio>
-            <div id="currentSong">No song selected</div>
-        </div>
-
-        <!-- Playlist -->
-        <div class="playlist">
-            <h3>Playlist ({{ playlist|length }} songs)</h3>
-            <ul id="playlistContainer">
-                {% for song in playlist %}
-                <li class="song-item">
-                    <span onclick="playSong('{{ song.path }}', '{{ song.title }}')">
-                        🎵 {{ song.title }}
-                    </span>
-                    <button class="delete-btn" onclick="deleteSong('{{ song.id }}')">❌</button>
-                </li>
-                {% endfor %}
-            </ul>
+{% block content %}
+<div class="landing-page">
+    <div class="logo-container">
+        <div class="logo">
+            <div class="logo-text">SUICINO</div>
         </div>
     </div>
-
-    <script src="{{ url_for('static', filename='js/player.js') }}"></script>
-</body>
-</html>
+    
+    <div class="auth-buttons">
+        <a href="{{ url_for('login') }}" class="btn btn-auth">Sign In</a>
+        <a href="{{ url_for('register') }}" class="btn btn-auth">Sign Up</a>
+    </div>
+</div>
+{% endblock %}
